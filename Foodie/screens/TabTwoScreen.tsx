@@ -1,14 +1,47 @@
-import { StyleSheet } from 'react-native';
+import { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+import { Title, Text } from 'react-native-paper';
+import { getAllMeals } from '../components/actions';
+import { View } from '../components/Themed';
+import { SavedMeal } from '../components/types';
+import { RootTabScreenProps } from '../types';
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+export default function TabTwoScreen({
+  navigation,
+}: RootTabScreenProps<'TabTwo'>) {
+  const [allMeals, setAllMeals] = useState<SavedMeal[] | null>(null);
 
-export default function TabTwoScreen() {
+  async function loadData(): Promise<void> {
+    await getAllMeals()
+      .then((response: SavedMeal[]) => {
+        setAllMeals(response);
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  }
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
+      <ScrollView style={styles.scrollView}>
+        {allMeals !== null &&
+          allMeals.map((meal: SavedMeal) => (
+            <Text
+              key={meal._id}
+              style={styles.item}
+              variant='bodyMedium'
+              onPress={() =>
+                navigation.navigate('SingleMeal', { id: meal.mealId })
+              }
+            >
+              {meal.title}
+            </Text>
+          ))}
+      </ScrollView>
     </View>
   );
 }
@@ -17,15 +50,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  scrollView: {
+    height: 100,
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  item: {
+    paddingBottom: 5,
   },
 });

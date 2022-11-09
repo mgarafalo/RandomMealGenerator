@@ -5,5 +5,6 @@ const mongoose_1 = require("mongoose");
 const mealSchema = new mongoose_1.Schema({
     mealId: { type: String, required: true },
     userId: { type: String, required: true },
+    title: { type: String, required: false },
 });
 exports.Meal = (0, mongoose_1.model)('Meal', mealSchema);

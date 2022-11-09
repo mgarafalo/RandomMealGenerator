@@ -19,3 +19,10 @@ export interface Ingredients {
   ingredient: string;
   measure: string;
 }
+
+export interface SavedMeal {
+  _id: string;
+  mealId: string;
+  userId: string;
+  title: string;
+}

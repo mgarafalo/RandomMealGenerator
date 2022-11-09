@@ -23,9 +23,10 @@ app.post('/meals/new', async (req, res) => {
     const meal = new Meal({
       mealId: req.query.mealId,
       userId: req.query.userId,
+      title: req.query.title,
     });
     collection.Meals?.insertOne(meal);
-    res.send(200);
+    res.sendStatus(200);
   });
 });
 

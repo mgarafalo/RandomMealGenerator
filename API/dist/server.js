@@ -37,31 +37,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors = __importStar(require("cors"));
-const mongoService_1 = require("./persistence/mongoService");
 const dotenv = __importStar(require("dotenv"));
+const mongoService_1 = require("./persistence/mongoService");
 const meal_1 = require("./models/meal");
 dotenv.config();
 const app = (0, express_1.default)();
 const PORT = 8080;
 app.use(cors.default());
 app.get('/meals/all', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log('hit');
     yield (0, mongoService_1.connectToDatabase)().then(() => __awaiter(void 0, void 0, void 0, function* () {
         const meals = yield mongoService_1.collection.Meals.find({}).toArray();
-        // console.log('meals', meals);
         res.send(meals);
     }));
 }));
 app.post('/meals/new', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    yield (0, mongoService_1.connectToDatabase)().then(() => __awaiter(void 0, void 0, void 0, function* () {
+    yield (0, mongoService_1.connectToDatabase)().then(() => {
         var _a;
         const meal = new meal_1.Meal({
             mealId: req.query.mealId,
             userId: req.query.userId,
+            title: req.query.title,
         });
         (_a = mongoService_1.collection.Meals) === null || _a === void 0 ? void 0 : _a.insertOne(meal);
-        res.send(200);
-    }));
+        res.sendStatus(200);
+    });
 }));
 app.listen(PORT, () => {
     console.log('app is running', PORT);

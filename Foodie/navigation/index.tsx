@@ -18,6 +18,7 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
+import SingleMealScreen from '../screens/SingleMealScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import {
@@ -55,6 +56,11 @@ function RootNavigator() {
         name='Root'
         component={BottomTabNavigator}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='SingleMeal'
+        component={SingleMealScreen}
+        options={{ headerShown: true }}
       />
       <Stack.Screen
         name='NotFound'
@@ -111,7 +117,7 @@ function BottomTabNavigator() {
         name='TabTwo'
         component={TabTwoScreen}
         options={{
-          title: 'Tab Two',
+          title: 'Saved Meals',
           tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
         }}
       />

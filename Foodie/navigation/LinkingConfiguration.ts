@@ -25,6 +25,14 @@ const linking: LinkingOptions<RootStackParamList> = {
               TabTwoScreen: 'two',
             },
           },
+          SingleMeal: {
+            screens: {
+              SingleMealScreen: 'single_meal',
+            },
+            parse: {
+              id: (id) => id,
+            },
+          },
         },
       },
       Modal: 'modal',
