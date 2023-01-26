@@ -1,18 +1,18 @@
-import { Dimensions, Linking, ScrollView, StyleSheet } from 'react-native';
-import { Button, Card, Paragraph, Title, Text } from 'react-native-paper';
-import { saveMeal } from './actions';
-import { View } from './Themed';
-import { Ingredients, RandomMealResponse } from './types';
+import { Dimensions, Linking, ScrollView, StyleSheet } from "react-native";
+import { Button, Card, Paragraph, Title, Text } from "react-native-paper";
+import { saveMeal } from "./actions";
+import { View } from "./Themed";
+import { Ingredients, RandomMealResponse } from "./types";
 
 interface props {
   meal: RandomMealResponse;
 }
 
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get("window").width;
 
 export default function MealViewer({ meal }: props) {
   async function handleSaveMeal() {
-    await saveMeal(meal?.idMeal!, '1', meal?.strMeal);
+    await saveMeal(meal?.idMeal!, "1");
   }
 
   return (
@@ -31,7 +31,7 @@ export default function MealViewer({ meal }: props) {
             </Button>
           </View>
           <Text
-            variant='bodySmall'
+            variant="bodySmall"
             onPress={() => Linking.openURL(meal.strSource)}
           >
             View Entire Recipe
@@ -40,7 +40,7 @@ export default function MealViewer({ meal }: props) {
           <Title>Ingredients:</Title>
           <View style={styles.listItems}>
             {meal.ingredients.map((group: Ingredients, index: number) => (
-              <Text key={index} variant='bodyMedium'>
+              <Text key={index} variant="bodyMedium">
                 {group.ingredient}: {group.measure}
               </Text>
             ))}
@@ -55,7 +55,7 @@ export default function MealViewer({ meal }: props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
   },
   scrollView: {
     height: 100,
@@ -65,17 +65,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listItems: {
-    color: 'black',
-    backgroundColor: 'white',
+    color: "black",
+    backgroundColor: "white",
     marginBottom: 10,
     marginLeft: 10,
   },
   titleContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   saveBtn: {
     paddingLeft: 8,
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    alignItems: "center",
+    justifyContent: "space-between",
   },
 });

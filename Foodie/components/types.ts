@@ -21,8 +21,11 @@ export interface Ingredients {
 }
 
 export interface SavedMeal {
-  _id: string;
+  id: string;
   mealId: string;
   userId: string;
-  title: string;
+}
+
+export interface SavedMealsResponse {
+  meals: SavedMeal[];
 }
