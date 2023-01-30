@@ -12,7 +12,12 @@ export async function generateRandom() {
 
 export async function getAllMeals(userId: string = "1") {
   const { data } = await axios.get(
-    `https://api-jiluvzocbq-ue.a.run.app/api/meal`
+    `https://api-jiluvzocbq-ue.a.run.app/api/meal`,
+    {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    }
   );
   return data;
 }
@@ -26,10 +31,18 @@ export async function getSingleMeal(mealId: string) {
 export async function saveMeal(mealId: string, userId: string = "1") {
   console.log(mealId);
   await axios
-    .post(`https://api-jiluvzocbq-ue.a.run.app/api/meal/${mealId}`, {
-      mealId,
-      userId,
-    })
+    .post(
+      `https://api-jiluvzocbq-ue.a.run.app/api/meal/${mealId}`,
+      {
+        mealId,
+        userId,
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    )
     .catch((error: any) => {
       console.log(error);
     });
