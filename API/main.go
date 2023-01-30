@@ -13,5 +13,5 @@ func main() {
 
 	router.SetupRoutes(app)
 
-	app.Listen(":3000")
+	app.Listen(":8080")
 }
