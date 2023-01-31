@@ -24,6 +24,7 @@ export interface SavedMeal {
   id: string;
   mealId: string;
   userId: string;
+  title: string;
 }
 
 export interface SavedMealsResponse {

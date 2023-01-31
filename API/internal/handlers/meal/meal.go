@@ -1,8 +1,6 @@
 package mealHandler
 
 import (
-	"log"
-
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 	"github.com/mgarafalo/RandomMealGenerator/API/database"
@@ -54,7 +52,7 @@ func CreateMeal(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(404).JSON(fiber.Map{"Error": "Failed"})
 	}
-	log.Println(meal)
+	
 	return c.JSON(fiber.Map{"New Meal": meal})
 }
 
@@ -62,15 +60,15 @@ func DeleteMeal(c *fiber.Ctx) error {
 	db := database.DB
 	var meal model.Meal
 
-	id := c.Params("id")
+	id := c.Params("mealId")
 
-	db.Find(&meal, "mealId = ?", id)
+	db.Find(&meal, "meal_id = ?", id)
 
 	if meal.ID == uuid.Nil {
 		return c.Status(404).JSON(fiber.Map{"error": "Meal not found"})
 	}
 
-	err := db.Delete(&meal, "mealId = ?", id).Error
+	err := db.Delete(&meal, "meal_id = ?", id).Error
 
 	if err != nil {
 		return c.Status(404).JSON(fiber.Map{"Error": "Failed to delete meal"})

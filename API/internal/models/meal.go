@@ -10,4 +10,5 @@ type Meal struct {
 	ID uuid.UUID `gorm:"type:uuid"`
 	UserId string `json:"userId"`
 	MealId string `json:"mealId"`
+	Title string `json:"title"`
 }

@@ -12,7 +12,8 @@ export async function generateRandom() {
 
 export async function getAllMeals(userId: string = "1") {
   const { data } = await axios.get(
-    `https://api-jiluvzocbq-ue.a.run.app/api/meal`,
+    `https://api-jiluvzocbq-ue.a.run.app/api/meal/`,
+    // `http://127.0.0.1:8080/api/meal`,
     {
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -28,13 +29,17 @@ export async function getSingleMeal(mealId: string) {
   return data;
 }
 
-export async function saveMeal(mealId: string, userId: string = "1") {
-  console.log(mealId);
+export async function saveMeal(
+  mealId: string,
+  title: string,
+  userId: string = "1"
+) {
   await axios
     .post(
       `https://api-jiluvzocbq-ue.a.run.app/api/meal/${mealId}`,
       {
         mealId,
+        title,
         userId,
       },
       {
@@ -46,4 +51,8 @@ export async function saveMeal(mealId: string, userId: string = "1") {
     .catch((error: any) => {
       console.log(error);
     });
+}
+
+export async function deleteMeal(mealId: string) {
+  await axios.delete(`https://api-jiluvzocbq-ue.a.run.app/api/meal/${mealId}`);
 }

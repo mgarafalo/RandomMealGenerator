@@ -1,9 +1,9 @@
 import { SearchIcon } from "@chakra-ui/icons";
-import { Box, Button, IconButton } from "@chakra-ui/react";
+import { Box, IconButton } from "@chakra-ui/react";
 import { useState } from "react";
-import { generateRandom, saveMeal } from "../API/actions";
+import { generateRandom } from "../API/actions";
 import MealViewer from "../components/MealViewer";
-import { Ingredients, RandomMealResponse } from "../types/types";
+import { RandomMealResponse } from "../types/types";
 
 export default function RandomMeal() {
   const [randomMeal, setRandomMeal] = useState<RandomMealResponse | null>(null);
@@ -35,7 +35,7 @@ export default function RandomMeal() {
   }
 
   return (
-    <Box className="flex items-center">
+    <Box className="flex flex-col gap-3 items-center justify-center w-full">
       <IconButton
         aria-label="search"
         icon={<SearchIcon />}
