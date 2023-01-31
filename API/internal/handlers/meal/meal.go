@@ -14,7 +14,7 @@ func GetMeals(c *fiber.Ctx) error {
 	db.Find(&meals)
 
 	if len(meals) == 0 {
-		return c.Status(404).JSON(fiber.Map{"erorr": "No meal ids"})
+		return c.Status(404).JSON(fiber.Map{"erorr": "No meal ids"}) 
 	}
 
 	return c.JSON(fiber.Map{"meals": meals})
