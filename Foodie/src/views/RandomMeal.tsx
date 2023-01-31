@@ -35,7 +35,7 @@ export default function RandomMeal() {
   }
 
   return (
-    <Box className="flex flex-col gap-3 items-center justify-center w-full">
+    <Box className="flex flex-col gap-3 items-center justify-center w-full p-8">
       <IconButton
         aria-label="search"
         icon={<SearchIcon />}

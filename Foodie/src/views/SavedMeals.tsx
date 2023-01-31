@@ -65,7 +65,7 @@ export default function SavedMeals() {
 
   return (
     <Box className="flex flex-col p-5">
-      <Box className="flex flex-row items-center p-5">
+      <Box className="flex flex-col items-center justify-center w-full p-5">
         {allMeals !== null &&
           allMeals.map((meal, i) => (
             <Box key={i} className="flex flex-row items-center gap-5">

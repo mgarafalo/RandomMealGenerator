@@ -16,7 +16,7 @@ export default function MealViewer({ meal }: props) {
   }
 
   return (
-    <Card>
+    <Card className="p-3">
       <Box className="w-full flex flex-col items-center">
         <Box className="flex flex-row items-center gap-3">
           <Text>{meal!.strMeal}</Text>

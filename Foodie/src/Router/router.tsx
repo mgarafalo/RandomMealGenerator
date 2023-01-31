@@ -5,7 +5,7 @@ import SavedMeals from "../views/SavedMeals";
 
 export default function AppRouter() {
   return (
-    <div className="flex items-center" style={{ paddingTop: "65px" }}>
+    <div className="flex items-center">
       <Routes>
         <Route path="/" element={<RandomMeal />} />
         <Route path="/meals" element={<SavedMeals />} />
